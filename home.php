@@ -2,12 +2,6 @@
     require_once "_session.php";
     require_once "_db.php";
 
-    $status = $dbconn->sp_execute("sp_home_verify_buyer_seller_existence", [$_SESSION['id']])[0][0];
-
-    if ($status['is_buyer'] == 0 && $status['is_seller'] == 0) {
-        //header("Location: welcome.php");
-    }
-
     $header_info = array(
         "title" => "Home",
         "scripts" => array("_scripts/home.js"),
@@ -15,71 +9,80 @@
         "social" => true
     );
     require_once "_header.php";
-
     require_once "navbar.php";
 ?>
-
     <body>
         <div class="container">
-            <?php if (isset($_GET['login'])): ?>
-                <!--<div id="welcome_message_wrapper" class="text-center alert alert-success">
-                    <span id="welcome_message" class="text-center"></span>
-                </div>-->
-                <?php endif; ?>
+            <!-- Heading Row -->
+            <div class="row">
+                <div class="col-md-8">
+                    <img class="img-responsive img-rounded" src="_images/ku_action.jpg" alt="">
+                </div>
+                <!-- /.col-md-8 -->
+                <div class="col-md-4">
+                    <h1><img src="_images/logo.png" height="64"/>&nbsp;<strong>Parking</strong></h1>
+                    <hr>
+                    <p><strong class='text-primary'>Welcome to the future.</strong>
+                        <br>Park where you want, when you want, hassle-free. GotIt! Parking provides a simple, intuitive platform for parkers and owners alike.</p>
                     <div class="row">
-                        <div class="col-md-1">
-                            <img src="_images/logo.png" height="80" width="80" />
-                        </div>
-                        <div class="col-md-8">
-                            <h1 class="text-primary" id="welcome_message"><strong></strong></h1>
+                        <div class="col-md-11 text-right">
+                            <a class="btn btn-primary btn-lg " href="about.php">Learn More&nbsp;<i class="glyphicon glyphicon-arrow-right"></i></a>
                         </div>
                     </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h3 id="transactions_header"><i class="fa fa-shopping-bag"></i>&ensp;<span class="text-primary">My Purchases</span></h3>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <table id="transactions_table" class="table no-border">
-                                        <tbody id="transactions_tbody">
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h3 id="transactions_header"><i class="fa fa-users"></i>&ensp;<span class="text-primary">Community Log</span></h3>
-                                    <div id="recent_transactions" class="well well-lg">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4" id="football_menu_wrapper">
-                            <h3 id="transactions_header"><i class="fa fa-binoculars"></i>&ensp;<span class="text-primary">Explore</span>&ensp;<small><span id="football_menu_help">Hover to View&ensp;<i class="fa fa-arrow-down"></i></span></small></h3>
-                            <nav id="football_menu" class="circular-menu">
-                                <div class="circle">
-                                    <a href="sell.php" class="btn-circle-expand btn-circle-expand-lg btn-sell vcenter" data-toggle="tooltip" data-placement="top" title="Manage Spots"><i class="fa fa-wrench fa-2x"></i></a>
-                                    <a href="sell.php?archived=true" class="btn-circle-expand btn-circle-expand-lg btn-sell vcenter" data-toggle="tooltip" data-placement="top" title="Selling History"><i class="fa fa-book fa-2x"></i></a>
-                                    <a href="seller_setup.php" class="btn-circle-expand btn-circle-expand-lg btn-sell vcenter" data-toggle="tooltip" data-placement="top" title="Seller Settings"><i class="fa fa-gear fa-2x"></i></a>
-                                    <a></a>
-                                    <a href="buyer_setup.php" class="btn-circle-expand btn-circle-expand-lg btn-buy vcenter" data-toggle="tooltip" data-placement="top" title="Buyer Settings"><i class="fa fa-gear fa-2x"></i></a>
-                                    <a href="buy.php?archived=true" class="btn-circle-expand btn-circle-expand-lg btn-buy vcenter" data-toggle="tooltip" data-placement="top" title="Buying History"><i class="fa fa-history fa-2x"></i></a>
-                                    <a href="buy.php" class="btn-circle-expand btn-circle-expand-lg btn-buy vcenter" data-toggle="tooltip" data-placement="top" title="Buy a Spot"><i class="fa fa-search fa-2x"></i></a>
-                                    <a></a>
-                                </div>
-                                <a class="menu-button" href=""><img height="100%" src="_images/football_icon.png" /></a>
-                            </nav>
-                        </div>
+                </div>
+                <!-- /.col-md-4 -->
+            </div>
+            <!-- /.row -->
+
+            <hr>
+
+            <!-- Call to Action Well -->
+            <!--<div class="row">
+            <div class="col-lg-12">
+                <div class="well text-center">
+                    Simple - Secure - GotIt! Parking
+                </div>
+            </div>
+        </div>-->
+            <!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-4">
+                    <h2><i class="fa fa-car"></i>&nbsp;&nbsp;Looking to Park?</h2>
+                    <p>Parking for the big game is tough. GotIt! Parking lets you find the perfect spot to tailgate and hang with friends, hassle-free. Learn to love the simplicity of GotIt! Parking and get parking!</p>
+                </div>
+                <div class="col-md-4">
+                    <h2><i class="fa fa-home"></i>&nbsp;&nbsp;Property Owners</h2>
+                    <p>Do you own a home near the stadium? Want to earn easy money at the touch of a button? GotIt! Parking's simple, intuitive interface and flexible platform allows you to manage gameday from the comfort of your own home.</p>
+                </div>
+                <div class="col-md-4">
+                    <h2><i class="fa fa-lightbulb-o"></i>&nbsp;&nbsp;Questions?</h2>
+                    <p>Visit our FAQ page to get answers to common questions about GotIt! Parking, or get in contact with us via e-mail or phone.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <a class="pull-right btn btn-primary btn-md" href="buy.php">Buy Now&nbsp;<i class="glyphicon glyphicon-arrow-right"></i></a>
+                </div>
+                <div class="col-md-4">
+                    <a class="pull-right btn btn-primary btn-md" href="sell.php">Sell Now&nbsp;<i class="glyphicon glyphicon-arrow-right"></i></a>
+                </div>
+                <div class="col-md-4">
+                    <a class="pull-right btn btn-primary btn-md" href="faq.php">Ask us Anything&nbsp;<i class="glyphicon glyphicon-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p></p>
                     </div>
-                    <hr>
+                </div>
+            </footer>
         </div>
     </body>
 
-    <?php
+<?php
     include "_footer.php";
 ?>

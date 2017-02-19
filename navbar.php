@@ -3,6 +3,7 @@
     require_once "_db.php";
 
     $page = basename($_SERVER['PHP_SELF']);
+    $logged_in = isset($_SESSION["id"]);
     $name = $dbconn->sp_execute("sp_navbar_name_select", [$_SESSION['id']])[0][0]['name'];
 ?>
     <script src="_scripts/navbar.js"></script>
@@ -16,7 +17,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a id="navbar_logo" href="home.php" class="navbar-left"><img src="_images/logo.png" height="32" width="32"></a>
+                <a id="navbar_logo" href="home.php" class="navbar-left"><img src="_images/logo.png" height="32"></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -24,10 +25,10 @@
                         <a href="home.php">Home</a>
                     </li>
                     <li class='animated <?php if ($page == "buy.php" ) {echo "active";} ?>'>
-                        <a href="buy.php">Find a Spot</a>
+                        <a href="buy.php">Park with Us!</a>
                     </li>
                     <li class='animated <?php if ($page == "sell.php" ) {echo "active";} ?>'>
-                        <a href="sell.php">Manage Spots</a>
+                        <a href="sell.php">Rent a Spot</a>
                     </li>
 
                 </ul>
@@ -42,6 +43,7 @@
                             <li <?php if ($page == "seller_setup.php") {echo "class='active'";} ?> ><a href="seller_setup.php">Seller Setup</a></li>
                         </ul>
                     </li>
+                    <?php if ($logged_in): ?>
                     <li class="dropdown animated">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $name;?>&ensp;<i class='fa fa-user'></i>&ensp;<span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -50,6 +52,9 @@
                             <li><a href="logout.php">Log Out</a></li>
                         </ul>
                     </li>
+                    <?php else:?>
+                    <button class="btn btn-default navbar-btn">Register</button>
+                    <?php endif;?>
                 </ul>
             </div>
             <!--/.nav-collapse -->
