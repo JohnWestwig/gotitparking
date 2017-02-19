@@ -1,0 +1,32 @@
+.container {
+    /*margin-top: 50px;*/
+    background-color: white;
+}
+body {
+    background-color: #337ab7;
+}
+.help-block {
+    color: #337ab7;
+}
+#map {
+    height: 450px;
+    width: 100%;
+}
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+.tab-container {
+    margin-top: 15px;
+}
+.address-col {
+    width: 100%;
+}
+.address-col h3 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.hidden-file-input {
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+}

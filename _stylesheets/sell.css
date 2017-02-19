@@ -1,0 +1,68 @@
+.stadium-col {
+    width: 80%;
+}
+.event-list-col {
+    width: 80%;
+}
+#offerings_tbody table tr:first-child td {
+    border-top: none;
+    !important
+}
+.toggle {
+    margin-top: 10px;
+}
+.transaction-count {
+    background: #5bc0de;
+    color: white;
+    position: absolute;
+    bottom: 3px;
+    right: -9px;
+}
+.img-rounded.top-padded {
+    margin-top: 8px;
+}
+.text-bold {
+    font-weight: 800;
+}
+.text-small {
+    font-size: 11px;
+}
+.toggle[disabled],
+.toggle[disabled] * {
+    cursor: not-allowed;
+    !important
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    display: none;
+}
+
+/*.row-fluid {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+.row-fluid > [class*="col-md"] {
+    float: none;
+    display: inline-block;
+    white-space: normal;
+    vertical-align: top;
+}
+.row-horizon > .col-md-3 {
+    width: 15.5%;
+}*/
+
+.progress.progress-thin {
+    height: 5px;
+    margin-top: 10px;
+}
+.progress-bar-hidden {
+    visibility: hidden;
+}
+.progress-thin .progress-bar {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
+}

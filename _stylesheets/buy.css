@@ -1,0 +1,53 @@
+.col-md-6,
+.col-md-12 {
+    /*border: 1px solid black;*/
+}
+#map {
+    height: 450px;
+    width: 100%;
+}
+#map_well,
+#map_wrapper {
+    width: 100%;
+}
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+tr .show-on-hover {
+    visibility: hidden;
+}
+tr:hover .show-on-hover {
+    visibility: visible;
+}
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+#price_filter .slider-selection {
+    background: #000000;
+}
+#distance_filter .slider-selection {
+    background: #000000;
+}
+th:focus {
+    outline: 0;
+}
+.info-window-no-scroll {
+    line-height: 1.35;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.info-window-no-scroll > div {
+    padding-top: 10px;
+}
+
+td {
+    text-align: center;
+}
+
+.info-window-owner {
+    padding-top: 20px;
+}

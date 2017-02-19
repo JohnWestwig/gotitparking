@@ -1,0 +1,34 @@
+HIGH PRIORITY:
+MEDIUM PRIORITY:
+    Google/Facebook login
+    Notifications?
+    
+LOW PRIORITY:
+Notes:
+
+
+
+On driveway delete: make sure there are not active offerings
+
+Sell update offerings:
+    Validate schedule
+    
+FROM ANTONIO:
+    Register through Facebook or Google button
+Find a Spot page
+    "parking near me" so the gps will tell them the closest one to them, and take them to the spot
+
+
+Ideas for homepage:
+
+    Events near me
+    !! Events my friends are going to
+    For sellers:
+        Notification if someone buys your spots! (Desktop/email notifications?)
+    Change font/style of title
+        
+Things to tell Antonio:
+    
+    Work with ticket sellers
+    
+S3 Instance for Image storage?

@@ -1,0 +1,89 @@
+.table.no-border tr td,
+.table.no-border tr th {
+    border-width: 0;
+}
+#transactions_header {
+    font-weight: 600;
+    margin-bottom: 25px;
+    margin-top: 0px;
+}
+.transaction-date {
+    font-style: italic;
+}
+/*#welcome_message_wrapper {
+    position: fixed;
+    top: 55px;
+    right: 5px;
+    width: 10%;
+    z-index: 2;
+}
+#welcome_message {
+    margin: 0 auto;
+}*/
+.btn-circle-expand {
+    background-color: black;
+    border-radius: 50%;
+    color: #ffffff;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .3s;
+    width: 40px;
+}
+.btn-circle-expand-lg {
+    height: 60px;
+    line-height: 60px;
+    width: 60px;
+}
+.btn-circle-expand .fa,
+.btn-circle-expand i {
+    backface-visibility: hidden;
+    transform: scale(1);
+    transition: all .25s;
+}
+.btn-circle-expand:hover,
+.btn-circle-expand:focus {
+    color: #fff;
+    outline: none;
+    text-decoration: none;
+}
+.btn-circle-expand:hover .fa,
+.btn-circle-expand:focus .fa,
+.btn-circle-expand:hover i,
+.btn-circle-expand:focus i {
+    transform: scale(1.2);
+}
+.vcenter {
+    vertical-align: middle;
+    float: 0;
+    display: inline-block;
+}
+.vcenter * {
+    vertical-align: middle;
+}
+.btn-directions {
+    background-color: #337ab7;
+}
+.btn-share {
+    background-color: #5cb85c;
+}
+.btn-sell {
+    background-color: #337ab7;
+}
+.btn-buy {
+    background-color: #5cb85c;
+}
+
+[data-toggle="tooltip"] {
+    z-index: 9999;
+}
+
+#football_menu_wrapper {
+    padding-bottom: 30px;
+}
+
+.gray-text {
+    color: #636568;
+}

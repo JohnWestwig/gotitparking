@@ -1,0 +1,9 @@
+body {
+    background-image: url("../_images/stadium.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container {
+    margin-top: 50px;
+}
