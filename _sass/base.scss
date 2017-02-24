@@ -1,0 +1,37 @@
+/* Fonts */
+$font-stack: 'Oxygen', sans-serif;
+
+/* Colors */
+$c-primary: #4286f4;
+
+$background-image: url("../_images/background_2.jpeg");
+
+$container-transparency: .9;
+$container-vertical-padding: 15px;
+
+body {
+    font-family: $font-stack;
+    background-image: $background-image;
+    background-size: cover;
+}
+.container {
+    background-color: rgba(255, 255, 255, $container-transparency);
+    padding-bottom: $container-vertical-padding;
+    padding-top: $container-vertical-padding;
+}
+
+.tooltip {
+    z-index: 9999;
+}
+
+/* Bootstrap overrides */
+$brand-primary:         $c-primary;
+$brand-success:         #5cb85c !default;
+$brand-info:            #5bc0de !default;
+$brand-warning:         #f0ad4e !default;
+$brand-danger:          #d9534f !default;
+
+$hr-border: lighten($c-primary, 30%);
+
+$icon-font-path: '../bootstrap-assets/fonts/bootstrap/';
+@import "../bootstrap-assets/stylesheets/bootstrap";

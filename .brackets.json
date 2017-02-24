@@ -1,0 +1,19 @@
+{
+    "sass.enabled": false,
+    "path": {
+        "_sass/*.scss": {
+            "sass.enabled": true,
+            "sass.options": {
+                "outputDir": "../_stylesheets/",
+                "includePaths": [],
+                "sourceComments": true,
+                "outputStyle": "nested"
+            },
+            "mikaeljorhult.bracketsPHPLintTools.php-available": true,
+            "linting.collapsed": true
+        },
+        "_sass/_*.scss": {
+            "sass.enabled": false
+        }
+    }
+}

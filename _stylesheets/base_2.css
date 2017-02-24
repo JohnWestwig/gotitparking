@@ -1,0 +1,38 @@
+body {
+    font-family: 'Oxygen', sans-serif !important;
+}
+.container {
+    /*margin-top: 50px;*/
+    background-color: rgba(255, 255, 255, .9);
+    /*background-color: rgba(230, 230, 230, .95);*/
+}
+
+.container {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+body {
+    /*background-image: url("../_images/stadium.jpg");*/
+    background-image: url("../_images/background_2.jpeg");
+    background-size: cover;
+}
+.text-overflow-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tooltip {
+    z-index: 9999;
+}
+
+.vr {
+    border-left: 1px solid #EEEEEE;
+}
+
+.btn.btn-primary {
+    background: #3b7dec;
+    border-color: #3b7dec;
+}
+
+/*3b7dec*/

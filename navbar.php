@@ -24,8 +24,8 @@
                     <li class='animated <?php if ($page == "home.php" ) {echo "active";} ?>'>
                         <a href="home.php">Home</a>
                     </li>
-                    <li class='animated <?php if ($page == "buy.php" ) {echo "active";} ?>'>
-                        <a href="buy.php">Park with Us!</a>
+                    <li class='animated <?php if ($page == "buy_splash.php" ) {echo "active";} ?>'>
+                        <a href="buy_splash.php">Park with Us!</a>
                     </li>
                     <li class='animated <?php if ($page == "sell.php" ) {echo "active";} ?>'>
                         <a href="sell.php">Rent a Spot</a>

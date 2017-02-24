@@ -48,11 +48,11 @@
 
             <div class="row">
                 <div class="col-md-4">
-                    <h2><i class="fa fa-car"></i>&nbsp;&nbsp;Looking to Park?</h2>
+                    <h2><i class="fa fa-car"></i>&nbsp;&nbsp;Looking to park?</h2>
                     <p>Parking for the big game is tough. GotIt! Parking lets you find the perfect spot to tailgate and hang with friends, hassle-free. Learn to love the simplicity of GotIt! Parking and get parking!</p>
                 </div>
                 <div class="col-md-4">
-                    <h2><i class="fa fa-home"></i>&nbsp;&nbsp;Property Owners</h2>
+                    <h2><i class="fa fa-home"></i>&nbsp;&nbsp;Have a spot to sell?</h2>
                     <p>Do you own a home near the stadium? Want to earn easy money at the touch of a button? GotIt! Parking's simple, intuitive interface and flexible platform allows you to manage gameday from the comfort of your own home.</p>
                 </div>
                 <div class="col-md-4">
