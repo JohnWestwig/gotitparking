@@ -87,7 +87,7 @@
                 </div>
             </div>
         </div>
-        <script async defer src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA92W3yX07dGidPcLYvBsOcpgNq0LBP2pM&callback=load_map"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA92W3yX07dGidPcLYvBsOcpgNq0LBP2pM&callback=load_map"></script>
     </body>
     <?php
     include "_footer.php";
