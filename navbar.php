@@ -27,8 +27,8 @@
                     <li class='animated <?php if ($page == "buy_splash.php" ) {echo "active";} ?>'>
                         <a href="buy_splash.php">Park with Us!</a>
                     </li>
-                    <li class='animated <?php if ($page == "sell.php" ) {echo "active";} ?>'>
-                        <a href="sell.php">Rent a Spot</a>
+                    <li class='animated <?php if ($page == "sell_splash.php" ) {echo "active";} ?>'>
+                        <a href="sell_splash.php">Rent out a Spot</a>
                     </li>
 
                 </ul>
@@ -39,21 +39,22 @@
                     <li class="dropdown animated">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li <?php if ($page == "buyer_setup.php") {echo "class='active'";} ?> ><a href="buyer_setup.php">Buyer Setup</a></li>
-                            <li <?php if ($page == "seller_setup.php") {echo "class='active'";} ?> ><a href="seller_setup.php">Seller Setup</a></li>
+                            <li <?php if ($page=="buyer_setup.php" ) {echo "class='active'";} ?> ><a href="buyer_setup.php">Buyer Setup</a></li>
+                            <li <?php if ($page=="seller_setup.php" ) {echo "class='active'";} ?> ><a href="seller_setup.php">Seller Setup</a></li>
                         </ul>
                     </li>
                     <?php if ($logged_in): ?>
-                    <li class="dropdown animated">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $name;?>&ensp;<i class='fa fa-user'></i>&ensp;<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li <?php if ($page == "profile.php") {echo "class='active'";} ?> ><a href="profile.php">My Profile</a></li>
-                            <li class="divider"></li>
-                            <li><a href="logout.php">Log Out</a></li>
-                        </ul>
-                    </li>
+                        <li class="dropdown animated">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <?php echo $name;?>&ensp;<i class='fa fa-user'></i>&ensp;<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li <?php if ($page=="profile.php" ) {echo "class='active'";} ?> ><a href="profile.php">My Profile</a></li>
+                                <li class="divider"></li>
+                                <li><a href="logout.php">Log Out</a></li>
+                            </ul>
+                        </li>
                     <?php else:?>
-                    <button class="btn btn-default navbar-btn">Register</button>
+                    <li><div class="btn-nav"><a href="register.php?sender=<?php echo $page;?>" class="btn btn-default navbar-btn">Register</a></div></li>
                     <?php endif;?>
                 </ul>
             </div>

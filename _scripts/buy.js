@@ -1,3 +1,5 @@
+var WALK_MIN_PER_KM = 12;
+
 var map,
     current_info_window,
     offerings_markers = [],
@@ -21,52 +23,41 @@ function load_map() {
     });
 
     stadium_marker = new google.maps.Marker({
-        position: new google.maps.LatLng($("#stadium_select option:selected").data("lat"), $("#stadium_select option:selected").data("lng")),
-        title: $("#stadium_select option:selected").text(),
         icon: "_images/stadium_icon.png",
         map: map
     });
 
-    load_stadiums(function (data) {
-        var stadiums = data[0];
-        var new_latlng = new google.maps.LatLng(stadiums[0].lat, stadiums[0].lng);
-        stadium_marker.setPosition(new_latlng);
-        stadium_marker.setTitle(stadiums[0].name);
-        map.setCenter(new_latlng);
-
-        var stadium_id = $("#stadium_select").val();
-        load_events(stadium_id, function () {
-            var event_id = $("#event_select").val();
-            load_offerings(event_id, 100, 10000);
-        });
-    });
-
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
+            load_closest_stadium(position.coords.latitude, position.coords.longitude);
+
             user_marker = new google.maps.Marker({
                 position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
                 icon: "_images/marker_blue.png",
                 map: map
             });
+            map.setCenter(user_marker.position);
+            $("#geolocation_message").css("visibility", "visible");
+            $("#map_loader").hide();
 
         }, function () {
-            //Handle location error.
+            $("#map_loader").hide();
+            //TODO: set message when geolocation is disabled.
         });
     } else {
-        //Browser doesn't support geolocation.
+        $("#map_loader").hide();
     }
 }
 
-function load_stadiums(success, error) {
-    make_request("load_stadiums", null, function (data) {
-        display_stadiums(data[0]);
-        if (success) {
-            success(data);
-        }
+function load_closest_stadium(lat, lng) {
+    make_request("load_closest_stadium", {
+        user_lat: lat,
+        user_lng: lng
+    }, function (data) {
+        $("#stadium_search").val(data[0][0].name);
+        on_change_stadium(data[0][0]);
     }, function () {
-        if (error) {
-            error(data);
-        }
+        console.log("Couldn't load closest stadium");
     });
 }
 
@@ -102,16 +93,6 @@ function load_offerings(event_id, max_distance, max_price, success, error) {
             error(data);
         }
     });
-}
-
-/* Display */
-function display_stadiums(stadiums) {
-    $("#stadium_select option").remove();
-    for (var i = 0; i < stadiums.length; i++) {
-        var stadium = stadiums[i];
-        $("#stadium_select_other").append("<option value='" + stadium.id + "' data-lng='" + stadium.lng + "' data-lat='" + stadium.lat + "'>" + stadium.name + "</option>");
-    }
-
 }
 
 function display_events(events) {
@@ -152,7 +133,7 @@ function display_offerings(offerings) {
                 '</div>' +
                 '<div class="text-center col-md-7 col-md-offset-2">' +
                 '<h4 class="text-primary"><strong>' + offering.line1 + '</strong></h4>' +
-                '<h5>' + offering.distance_to_stadium + ' km | ' + '$' + Math.floor(offering.price / 100) + '</h5>' +
+                '<h5>' + Math.floor(WALK_MIN_PER_KM * offering.distance_to_stadium) + ' min. walk | $' + Math.floor(offering.price / 100) + '</h5>' +
                 '<h6 class="info-window-owner"><i class="fa fa-user"></i>&ensp;<span class="text-info">' + offering.name + '</span></h6>' +
                 '</div>' +
                 '</div>' +
@@ -190,11 +171,11 @@ function display_info_window() {
 }
 
 /* Events */
-function on_change_stadium() {
-    load_events($("#stadium_select option:selected").val());
-    var new_latlng = new google.maps.LatLng($("#stadium_select option:selected").data("lat"), $("#stadium_select option:selected").data("lng"));
+function on_change_stadium(stadium) {
+    load_events(stadium.id);
+    var new_latlng = new google.maps.LatLng(stadium.lat, stadium.lng);
     stadium_marker.setPosition(new_latlng);
-    stadium_marker.setTitle($("#stadium_select option:selected").text());
+    stadium_marker.setTitle(stadium.name);
     map.setCenter(new_latlng);
 }
 
@@ -237,10 +218,10 @@ function on_offerings_table_draw() {
     for (var i = 0; i < offerings_markers.length; i++) {
         offerings_markers[i].setMap(null);
     }
-    
+
     offerings_table.rows({
         "filter": "applied"
-    }).nodes().to$().each(function(index) {
+    }).nodes().to$().each(function (index) {
         offerings_markers[parseInt($(this).find(".map-link").data("marker-index"))].setMap(map);
     });
 }
@@ -270,7 +251,32 @@ $(document).ready(function () {
 
 
     /* Bind event handlers */
-    $("#stadium_select").on("change", on_change_stadium);
+    $("#stadium_select").on("change", on_change_stadium); //TODO respond to search select event.
+
+    $("#stadium_search").autocomplete({
+        lookup: function (query, done) {
+            make_request("load_stadiums", {
+                filter: query
+            }, function (data) {
+                var stadiums = data[0];
+                var result = {
+                    suggestions: []
+                };
+                for (var i = 0; i < stadiums.length; i++) {
+                    result.suggestions.push({
+                        value: stadiums[i].name,
+                        data: stadiums[i]
+                    });
+                }
+                console.log(result);
+                done(result);
+            });
+        },
+        onSelect: function (suggestion) {
+            on_change_stadium(suggestion.data);
+        }
+    });
+
     $("#event_select").on("change", on_change_event);
 
     $("#offerings_tbody").on("click", ".map-link", on_click_map_link);

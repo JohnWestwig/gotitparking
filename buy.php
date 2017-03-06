@@ -8,7 +8,8 @@
         "scripts" => array("_scripts/buy.js"),
         "slider" => true,
         "data_table" => true,
-        "social" => true
+        "social" => true,
+        "autocomplete" => true
     );
 
     include "_header.php";
@@ -21,18 +22,14 @@
                 <strong>Uh-Oh!</strong> <span id="reservation_failed_message"></span>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <div class="row">
                         <div class="col-md-1">
                             <i class='fa fa-2x fa-map-marker'></i>
                         </div>
                         <div class="col-md-5">
-                            <select class="form-control input-sm" id="stadium_select">
-                                <optgroup label="Visited" id="stadium_select_visited">
-                                </optgroup>
-                                <optgroup label="Other" id="stadium_select_other">
-                                </optgroup>
-                            </select>
+                            <input id="stadium_search" type="text" class="form-control input-sm" placeholder="Search stadiums...">
+                            <p class="text-info" id="geolocation_message">Based on your current location</p>
                         </div>
                         <div class="col-md-1">
                             <i class='fa fa-calendar fa-2x'></i>
@@ -42,7 +39,7 @@
                             </select>
                         </div>
                     </div>
-                    <hr>
+                    <hr class="no-margin-top">
                     <div class="row">
                         <div class="col-md-6">
                             <input id="price_filter" data-slider-id='price_filter' type="text" data-slider-min="0" data-slider-max="50" data-slider-step="1" data-slider-value="50" />
@@ -53,20 +50,21 @@
                             <p class="text-primary small"><strong>Distance</strong></p>
                         </div>
                     </div>
-                    <hr>
+                    <hr class="no-margin-top">
                     <div class="row">
                         <div class="col-md-12" id="map_wrapper">
+                            <div id="map_loader"></div>
                             <div id="map"></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="row">
                         <div class="col-md-1">
                             <i class="fa fa-search fa-2x"></i>
                         </div>
                         <div class="col-md-11">
-                            <input id="offerings_table_search" type="text" class="form-control input-sm" placeholder="Search by address or owner...">
+                            <input id="offerings_table_search" type="text" class="form-control input-sm" placeholder="Filter results by address or owner...">
                         </div>
                     </div>
                     <hr>
@@ -75,8 +73,12 @@
                             <th class="text-center"></th>
                             <th class="text-center"><i class="fa fa-lg fa-home"></i>&nbsp;&nbsp;Address</th>
                             <th class="text-center"><i class="fa fa-lg fa-user"></i>&nbsp;&nbsp;Owner</th>
-                            <th class="text-center"><i class="fa fa-lg fa-road"></i><!--&nbsp;&nbsp;Distance--></th>
-                            <th class="text-center"><i class="fa fa-lg fa-money"></i><!--&nbsp;&nbsp;Price--></th>
+                            <th class="text-center"><i class="fa fa-lg fa-road"></i>
+                                <!--&nbsp;&nbsp;Distance-->
+                            </th>
+                            <th class="text-center"><i class="fa fa-lg fa-money"></i>
+                                <!--&nbsp;&nbsp;Price-->
+                            </th>
                             <th class="text-center"></th>
                         </thead>
                         <tbody id="offerings_tbody">

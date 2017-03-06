@@ -65,7 +65,7 @@
                     <a class="pull-right btn btn-primary btn-md" href="buy.php">Buy Now&nbsp;<i class="glyphicon glyphicon-arrow-right"></i></a>
                 </div>
                 <div class="col-md-4">
-                    <a class="pull-right btn btn-primary btn-md" href="sell.php">Sell Now&nbsp;<i class="glyphicon glyphicon-arrow-right"></i></a>
+                    <a class="pull-right btn btn-primary btn-md" href="sell_splash.php">Sell Now&nbsp;<i class="glyphicon glyphicon-arrow-right"></i></a>
                 </div>
                 <div class="col-md-4">
                     <a class="pull-right btn btn-primary btn-md" href="faq.php">Ask us Anything&nbsp;<i class="glyphicon glyphicon-arrow-right"></i></a>

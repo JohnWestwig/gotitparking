@@ -54,7 +54,7 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-md-5 text-center">
-                                        <p class="text-success">Already a member? Login <a href="./login.php"><strong>here</strong>.</a></p>
+                                        <p class="text-success">Already a member? Login <a href="./login.php?sender=<?php echo $_GET['sender'];?>"><strong>here</strong>.</a></p>
                                     </div>
                                     <div class="col-md-6 col-md-offset-1 text-right">
                                         <button name="register" type="submit" class="btn btn-primary btn-lg">Finish&nbsp;<i class="glyphicon glyphicon-arrow-right"></i></button>

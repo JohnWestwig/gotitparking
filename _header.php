@@ -7,7 +7,7 @@
 
     <title>
         <?php 
-            echo "ParkU" . (array_key_exists('title', $header_info) ? " | " . $header_info['title'] : "" );
+            echo "GotIt! Parking" . (array_key_exists('title', $header_info) ? " | " . $header_info['title'] : "" );
         ?>
     </title>
     
@@ -76,8 +76,11 @@
         <?php endif; ?>
     
         <?php if (array_key_exists('social', $header_info)): ?>
-            <!-- Social Links -->
             <?php include "social_links.php"; ?>
+        <?php endif; ?>
+    
+        <?php if (array_key_exists('autocomplete', $header_info)): ?>
+            <script src="_scripts/jquery.autocomplete.js"></script>
         <?php endif; ?>
     <?php endif; ?>
 </head>

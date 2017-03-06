@@ -1,34 +1,38 @@
-HIGH PRIORITY:
-MEDIUM PRIORITY:
-    Google/Facebook login
-    Notifications?
-    
-LOW PRIORITY:
-Notes:
+/* TODO (BUY)
+ * Parking near me button
+ */
+ 
+/* TODO (TRANSACTION)
+ * Buy as a guest (if that's possible, I know we don't want to handle credit card info)
+ * Add PayPal
+ * Use reservation numbers for game day parking instead of license plate #
+ * Add option to purchase more time for after the game
+ * Season Pass option for purchasing
+ * "Add Car"  option for customers at checkout if they forgot to add one of their vehicles, so they don't have to start the checkout all over again.
+ */
+ 
+/* TODO (SELL)
+ * Parking near me button
+ * Landlord can choose how many hours before the game people can show up to tailgate.
+ * Landlord can choose to make parking spots "All Day Parking" or "Just Game Parking."
+ */
+ 
+/* TODO (MISC.)
+ * Instead of saying "Explore" on the homepage, say "what would you like to do?" then they'll see all of their options for the website when they hover over the football
+ * Move "My Purchases" on Homepage to Account page
+ * Need to verify accounts somehow. add code that is sent to email or phone.
+ * Option for buyer to click on address that was purchased, and it will take you to your Maps, so they have navigation on how to get there.
+ * When you create your Account that's when you will add your Vehicle to your Profile.
+ */
 
+/* TODO (John):
+ * Test buy page with location services disabled.
+ * S3 bucket for user-uploaded images.
+ */
 
-
-On driveway delete: make sure there are not active offerings
-
-Sell update offerings:
-    Validate schedule
-    
-FROM ANTONIO:
-    Register through Facebook or Google button
-Find a Spot page
-    "parking near me" so the gps will tell them the closest one to them, and take them to the spot
-
-
-Ideas for homepage:
-
-    Events near me
-    !! Events my friends are going to
-    For sellers:
-        Notification if someone buys your spots! (Desktop/email notifications?)
-    Change font/style of title
-        
-Things to tell Antonio:
-    
-    Work with ticket sellers
-    
-S3 Instance for Image storage?
+/* DONE:
+ * Remove login for opening page (we want customers to be able to look at our company without having to make an account. We can add a Create Account button to the website home page.)
+ * Search Stadiums on Find A Spot page
+ * Add walk time from parking spot to stadium 
+ * Add loading animation for buy a spot page.
+ */

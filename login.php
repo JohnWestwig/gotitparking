@@ -8,7 +8,11 @@
         
         if ($verification['verified']) {
             $_SESSION['id'] = $verification['user_id'];
-            header("Location: home.php?login=true");
+            if (isset($_GET['sender'])) {
+                header("Location: " . $_GET['sender']);
+            } else {
+                header("Location: home.php?login=true");
+            }
         } else {
             $error = true;
         }
@@ -49,7 +53,7 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-md-5 text-center">
-                                        <p class="text-success">New to ParkU? Register <a href="./register.php"><strong>here</strong>.</a></p>
+                                        <p class="text-success">New to ParkU? Register <a href="./register.php?sender=<?php echo $_GET['sender'];?>"><strong>here</strong>.</a></p>
                                     </div>
                                     <div class="col-md-6 col-md-offset-1 text-center">
                                         <button type="submit" name="login" class="btn btn-primary btn-lg">Continue&nbsp;<i class="glyphicon glyphicon-arrow-right"></i></button>

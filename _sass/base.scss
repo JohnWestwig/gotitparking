@@ -8,6 +8,7 @@ $background-image: url("../_images/background_2.jpeg");
 
 $container-transparency: .9;
 $container-vertical-padding: 15px;
+$container-border-radius: 5px;
 
 body {
     font-family: $font-stack;
@@ -18,6 +19,7 @@ body {
     background-color: rgba(255, 255, 255, $container-transparency);
     padding-bottom: $container-vertical-padding;
     padding-top: $container-vertical-padding;
+    border-radius: $container-border-radius;
 }
 
 .tooltip {
@@ -26,12 +28,13 @@ body {
 
 /* Bootstrap overrides */
 $brand-primary:         $c-primary;
-$brand-success:         #5cb85c !default;
+
+/*$brand-success:         #5cb85c !default;
 $brand-info:            #5bc0de !default;
 $brand-warning:         #f0ad4e !default;
-$brand-danger:          #d9534f !default;
+$brand-danger:          #d9534f !default;*/
 
-$hr-border: lighten($c-primary, 30%);
+$hr-border: lighten(black, 85%);
 
 $icon-font-path: '../bootstrap-assets/fonts/bootstrap/';
 @import "../bootstrap-assets/stylesheets/bootstrap";

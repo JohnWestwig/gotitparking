@@ -1,5 +1,9 @@
 <?php
     session_start();
     unset($_SESSION["id"]);
-    header("Location: login.php");
+    if (isset($_GET['sender'])) {
+        header("Location: " . $_GET['sender']);
+    } else {
+        header("Location: home.php");
+    }
 ?>

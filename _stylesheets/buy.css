@@ -39,15 +39,70 @@ th:focus {
     overflow: hidden;
     white-space: nowrap;
 }
-
 .info-window-no-scroll > div {
     padding-top: 10px;
 }
-
 td {
     text-align: center;
 }
-
 .info-window-owner {
     padding-top: 20px;
 }
+.autocomplete-suggestions {
+    border: 1px solid #999;
+    border-radius: 3px;
+    background: #FFF;
+    overflow: auto;
+}
+.autocomplete-suggestion {
+    padding: 2px 5px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.autocomplete-selected {
+    background: #F0F0F0;
+}
+.autocomplete-suggestions strong {
+    font-weight: normal;
+    color: #3399FF;
+}
+.autocomplete-group {
+    padding: 2px 5px;
+}
+.autocomplete-group strong {
+    display: block;
+    border-bottom: 1px solid #000;
+}
+
+#geolocation_message {
+    padding-left: 2px;
+    font-size: 10px;
+    visibility: hidden;
+}
+
+hr.no-margin-top{
+    margin-top: 0;
+}
+
+#map {
+    background: transparent;
+    padding: 1em;
+    background-image: url("_images/loader.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#map_wrapper {
+    position: relative;
+}
+
+#map_loader {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    z-index: 1;
+    background: url(../_images/loader.svg) no-repeat 50% 50%; 
+}
+

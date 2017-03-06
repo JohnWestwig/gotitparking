@@ -6,7 +6,7 @@
         header("Location: buy.php");
     }
 
-    $reservation = $dbconn->sp_execute("sp_make_transaction_reservation_select", [$_SESSION['id'], $_GET['offering_id']])[0][0];
+    $reservation = $dbconn->sp_execute("sp_make_transaction_reservation_select", [$_GET['offering_id']])[0][0];
     if ($reservation == false || $reservation['time_remaining'] <= 0) {
         header("Location: buy.php?offering_id=" . $_GET['offering_id'] . "&reservation=" . json_encode($reservation));
         //header("Location: https://chess.com");

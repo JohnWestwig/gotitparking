@@ -1,23 +1,28 @@
 @charset "UTF-8";
 /* Fonts */
 /* Colors */
-/* line 12, /Users/John/gotitparking/web/_sass/base.scss */
+/* line 13, /Users/John/gotitparking/web/_sass/base.scss */
 body {
   font-family: "Oxygen", sans-serif;
   background-image: url("../_images/background_2.jpeg");
   background-size: cover; }
 
-/* line 17, /Users/John/gotitparking/web/_sass/base.scss */
+/* line 18, /Users/John/gotitparking/web/_sass/base.scss */
 .container {
   background-color: rgba(255, 255, 255, 0.9);
   padding-bottom: 15px;
-  padding-top: 15px; }
+  padding-top: 15px;
+  border-radius: 5px; }
 
-/* line 23, /Users/John/gotitparking/web/_sass/base.scss */
+/* line 25, /Users/John/gotitparking/web/_sass/base.scss */
 .tooltip {
   z-index: 9999; }
 
 /* Bootstrap overrides */
+/*$brand-success:         #5cb85c !default;
+$brand-info:            #5bc0de !default;
+$brand-warning:         #f0ad4e !default;
+$brand-danger:          #d9534f !default;*/
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -1467,7 +1472,7 @@ hr {
   margin-top: 20px;
   margin-bottom: 20px;
   border: 0;
-  border-top: 1px solid #d3e3fc; }
+  border-top: 1px solid #d9d9d9; }
 
 /* line 125, /Users/John/gotitparking/web/bootstrap-assets/stylesheets/bootstrap/_scaffolding.scss */
 .sr-only {
