@@ -16,7 +16,7 @@
             <div class="flex-row">
                 <div class="col-md-8">
                     <h2>Why GotIt! Parking?</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget rutrum tortor. Nam at facilisis metus. Cras sollicitudin, nisi eget auctor tincidunt, turpis mi aliquet quam, quis laoreet nunc purus at ante. Sed enim nunc, varius quis ultricies nec, auctor in quam. Duis nec sem quis odio venenatis egestas a a est. Aliquam pulvinar arcu non magna tristique dapibus. Suspendisse tincidunt placerat dapibus. </p>
+                    <p>Want to make some easy cash on game day?  GotIt! Parking takes the hassle out of finding a parking spot for fans by helping property owners near the stadium easily turn their lawn or driveway into a parking lot. Once you’re on board with us, you choose how many parking spaces you have available to sell, how much each one will cost, and what days they will be available. We take care of the rest. You get paid when customers purchase their parking space from you, using our secure online payment platform.</p>
                 </div>
                 <div class="col-md-4 text-center">
                     <a class="btn btn-primary btn-lg " href="sell.php">Start Selling&nbsp;<i class="glyphicon glyphicon-arrow-right"></i></a>
