@@ -1,6 +1,7 @@
 <?php
     require_once "_session.php";
     require_once "_db.php";
+    require_once "stripe.php";
 
     $id = $_SESSION['id'];
 
@@ -28,6 +29,17 @@
             }
             break;
         case "stripe_load":
+            reply($dbconn->sp_execute("sp_seller_setup_stripe_select", [$id]));
+            break;
+        case "stripe_create":
+            $stripe_account = \Stripe\Account::create(
+                array(
+                    "country" => "US",
+                    "managed" => true
+                )
+            );
+            $dbconn->sp_execute("sp_seller_setup_stripe_seller_insert", 
+                                [$id, $stripe_account['id'], $stripe_account['keys']['publishable'], $stripe_account['keys']['secret']]);
             reply($dbconn->sp_execute("sp_seller_setup_stripe_select", [$id]));
             break;
         default:

@@ -1,11 +1,11 @@
 make_request_url = "checkout_action.php";
 
 /* JQuery Handles */
-var $returnButton;
-var $continueButton;
+var $returnButton, $continueButton;
 var $verifyCardButton;
-var $paymentFormErrorAlert;
-var $paymentFormErrorAlertText;
+var $paymentFormErrorAlert, $paymentFormErrorAlertText;
+var $cardVerifiedIndicator, $cardVerifiedErrorIndicator;
+var $finishCheckoutButton;
 
 var vehicle_table;
 
@@ -48,7 +48,7 @@ function display_vehicles(vehicles) {
         var vehicle = vehicles[i];
         var vehicle_col = '<td><h4 class="text-primary">' + vehicle.plate + '&nbsp;<small>' + vehicle.color + ' ' + vehicle.make + ' ' + vehicle.model + '</small></h4></td>';
         vehicle_table.row.add([
-            "<td>" + vehicle.id + "</td>",
+            vehicle.id,
             "<td></td>",
             vehicle_col
         ]);
@@ -120,22 +120,39 @@ function verifyCard() {
 }
 
 function onVerifyCardResponse(status, response) {
-    var payment_form = $("#payment_form");
     if (response.error) { // Problem!
         console.log(response.error);
         $paymentFormErrorAlertText.text(response.error.message);
         $paymentFormErrorAlert.show();
+
+        $cardVerifiedIndicator.hide();
+        $cardVerifiedErrorIndicator.show();
     } else {
         $paymentFormErrorAlert.hide();
-        
+
         var token = response.id;
         stripeCardToken = token;
         console.log(token);
-        payment_form.append($('<input type="hidden" name="stripe_token" />').val(token));
+        $("#make_transaction_info input[name=stripe_token]").val(token);
+
+        $cardVerifiedIndicator.show();
+        $cardVerifiedErrorIndicator.hide();
     }
     console.log("refreshing");
     //Refresh step
     gotoStep(currentStepIndex);
+}
+
+function onfinishCheckoutButtonClicked() {
+    make_request("make_transaction", {
+        offering_id: $("#make_transaction_info input[name=offering_id]").val(),
+        stripe_token: $("#make_transaction_info input[name=stripe_token]").val(),
+        vehicle_id: $("#make_transaction_info input[name=vehicle_id]").val()
+    }, function (data) {
+        console.log("success (but should have been redirected)", data);
+    }, function () {
+        console.log("error");
+    });
 }
 
 function canGotoInBetweenSteps(start, end) {
@@ -246,9 +263,15 @@ $(document).ready(function () {
 
     $verifyCardButton = $("#verifyCardButton");
     $verifyCardButton.on("click", onVerifyCardButtonClicked);
-    
+
     $paymentFormErrorAlert = $("#payment_form_error_alert");
     $paymentFormErrorAlertText = $("#payment_form_error_alert_text");
+
+    $cardVerifiedIndicator = $("#cardVerifiedIndicator");
+    $cardVerifiedErrorIndicator = $("#cardVerifiedErrorIndicator");
+
+    $finishCheckoutButton = $("#finishCheckoutButton");
+    $finishCheckoutButton.on("click", onfinishCheckoutButtonClicked);
 
     $("#step-headers").on("click", "a", onClickStepLabel);
 
@@ -261,7 +284,7 @@ $(document).ready(function () {
         columnDefs: [{
             targets: "_all",
             orderable: false
-        },{
+        }, {
             targets: [0],
             visible: false,
             orderable: false,
@@ -277,12 +300,13 @@ $(document).ready(function () {
         },
         order: [[2, 'asc']]
     }).on('select', function (e, dt, type, indexes) {
-        //Do something with selected vehicle
+        var vehicle_id = vehicle_table.rows(indexes).data()[0][0];
+        $("#make_transaction_info input[name=vehicle_id]").val(vehicle_id);
 
         //Refresh step
         gotoStep(currentStepIndex);
     }).on('deselect', function (e, dt, type, indexes) {
-        //Do something with selected vehicle
+        $("#make_transaction_info input[name=vehicle_id]").val("");
 
         //Refresh step
         gotoStep(currentStepIndex);

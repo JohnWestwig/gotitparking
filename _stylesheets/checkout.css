@@ -20,3 +20,11 @@
 #vehicle_table {
     width: 100%;
 }
+
+#cardVerifiedIndicator {
+    color: #5cb85c;
+}
+
+#cardVerifiedErrorIndicator {
+    color: #d9534f;
+}

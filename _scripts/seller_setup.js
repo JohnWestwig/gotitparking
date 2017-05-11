@@ -9,9 +9,6 @@ function load_map() {
         center: new google.maps.LatLng(0, 0),
         zoom: 6
     });
-
-
-
     load_driveways();
 }
 
@@ -23,7 +20,7 @@ function load_driveways() {
 
 function load_stripe() {
     make_request("stripe_load", null, function (data) {
-        display_stripe(data[0]);
+        display_stripe(data[0][0]);
     });
 }
 
@@ -69,12 +66,10 @@ function display_driveways(driveways) {
 }
 
 function display_stripe(stripe) {
-    if (stripe == false) {
-        $("#stripe_connect_success").hide();
-        $("#stripe_connect_link").show();
-    } else {
-        $("#stripe_connect_success").show();
-        $("#stripe_connect_link").hide();
+    if (stripe) {
+        console.log(stripe);
+        $("#createStripeAccountButton").hide();
+        $("#stripe_account_id").text(stripe.stripe_account_id);
     }
 }
 
@@ -145,6 +140,13 @@ function on_driveway_edit_image_upload_complete() {
         alert("nope");
     });
 }
+
+function onStripeAccountButtonClicked() {
+    make_request("stripe_create", null, function(data) {
+        display_stripe(data[0][0]); 
+    });
+}
+
 $(document).ready(function () {
     //Bind event handlers:
     $("#add_driveway").on("click", on_click_driveway_add_button);
@@ -157,6 +159,8 @@ $(document).ready(function () {
 
     $("#driveway_edit_image_upload_button").on("click", on_click_edit_driveway_upload_image_button);
     $("#driveway_edit_image").on("change", on_driveway_edit_image_upload_complete);
+
+    $("#createStripeAccountButton").on("click", onStripeAccountButtonClicked);
 
     //Initial Load:
     load_stripe();

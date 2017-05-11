@@ -116,7 +116,6 @@
                 <div class="col-md-10 checkout-step" id="step-2-content" hidden></div>
                 <div class="col-md-10 checkout-step" id="step-3-content" hidden>
                     <form id="payment_form" role="form" method="post">
-                        <input type="hidden" name="offering_id" value="<?php echo $_GET['offering_id'];?>" />
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row">
@@ -190,6 +189,8 @@
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <button id="verifyCardButton" class="btn btn-lg btn-success">Verify Card</button>
+                            <i id="cardVerifiedIndicator" class="fa fa-2x fa-check" hidden></i>
+                            <i id="cardVerifiedErrorIndicator" class="fa fa-2x fa-remove" hidden></i>
                         </div>
                     </div>
                 </div>
@@ -282,6 +283,12 @@
                     <!-- /.modal-content -->
                 </div>
                 <!-- /.modal-dialog -->
+            </div>
+            <!-- Offering id, vehicle id, stripe token -->
+            <div id="make_transaction_info" hidden>
+                <input type="hidden" name="offering_id" value="<?php echo $_GET['offering_id'];?>" />
+                <input type="hidden" name="vehicle_id" value=""/>
+                <input type="hidden" name="stripe_token" value=""/>
             </div>
         </div>
     </body>

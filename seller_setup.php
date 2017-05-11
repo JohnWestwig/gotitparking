@@ -12,50 +12,6 @@
         "scripts" => array("_scripts/seller_setup.js")
     );
     require_once "_header.php";
-
-    if (isset($_GET['code'])) {
-        $code = $_GET['code'];
-
-        $token_request_body = array(
-            'grant_type' => 'authorization_code',
-            'client_id' => STRIPE_CLIENT_ID,
-            'code' => $code,
-            'client_secret' => STRIPE_API_KEY
-        );
-
-        $req = curl_init(STRIPE_TOKEN_URI);
-        curl_setopt($req, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($req, CURLOPT_POST, true);
-        curl_setopt(
-            $req,
-            CURLOPT_POSTFIELDS,
-            http_build_query($token_request_body)
-        );
-
-        // TODO: Additional error handling
-        
-        $respCode = curl_getinfo($req, CURLINFO_HTTP_CODE);
-        $resp = json_decode(curl_exec($req), true);
-        curl_close($req);
-        
-        // Save response:
-        $dbconn->sp_execute("sp_seller_setup_stripe_seller_insert", [
-            $_SESSION['id'], $resp['stripe_user_id'],
-            $resp['stripe_publishable_key'], $resp['access_token'],
-            $resp['refresh_token']
-        ]);
-
-    } elseif (isset($_GET['error'])) {
-        echo $_GET['error_description'];
-    } else {
-        $authorize_request_body = array(
-            'response_type' => 'code',
-            'scope' => 'read_write',
-            'client_id' => STRIPE_CLIENT_ID
-        );
-        $url = STRIPE_AUTHORIZE_URI . '?' .
-            http_build_query($authorize_request_body);
-    }
     include_once "navbar.php";
 ?>
 
@@ -90,14 +46,14 @@
                         <div role="tabpanel" class="tab-pane" id="stripe">
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-6 well">
-                                        <h4 class="text-success">ParkU uses Stripe to manage its payments.  We require all homeowners to create a Stripe account to allow for easy transferral of funds from your customers to you.  ParkU requires you to connect with Stripe before placing your driveways on the market.</h4>
+                                    <div class="col-md-12">
+                                        <h5>ParkU uses Stripe to manage its payments.  We require all homeowners to create a Stripe account to allow for easy transferral of funds from your customers to you.  ParkU requires you to connect with Stripe before placing your driveways on the market.</h5>
                                     </div>
-                                    <div class="col-md-6 text-center">
-                                        <?php if (isset($url)): ?>
-                                            <a id="stripe_connect_link" href="<?php echo $url;?>" class="stripe-connect"><span>Connect with Stripe</span></a>
-                                            <?php endif; ?>
-                                                <p id="stripe_connect_success" class="text-success">Looks like you're already connected with stripe! You are ready to place your driveways on the market</p>
+                                    <div class="col-md-12 text-center">
+                                        <p id="stripe_account_id"></p>
+                                    </div>
+                                    <div class="col-md-12 text-center">
+                                        <button class="btn btn-lg btn-success" id="createStripeAccountButton">Create Account</button>
                                     </div>
                                 </div>
                             </div>
