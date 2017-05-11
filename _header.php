@@ -44,8 +44,10 @@
     
         <?php if (array_key_exists('data_table', $header_info)): ?>
             <!-- DataTables -->
-            <link rel="stylesheet" type="text/css" src="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
-            <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.1/css/select.dataTables.min.css">
+            <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/select/1.2.1/js/dataTables.select.min.js"></script>
         <?php endif; ?>
     
         <?php if (array_key_exists('bootstrap_toggle', $header_info)): ?>

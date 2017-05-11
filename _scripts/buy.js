@@ -190,7 +190,7 @@ function on_click_make_transaction_button() {
     }, function (data) {
         var reservation_info = data[0][0];
         if (reservation_info.reserve_successful != "false") {
-            window.location.href = "make_transaction.php?offering_id=" + reservation_info.offering_id;
+            window.location.href = "checkout.php?offering_id=" + reservation_info.offering_id;
         } else {
             $("#reservation_failed_message").text("Reservation unsuccessful");
             $("#reservation_failed_alert").show();

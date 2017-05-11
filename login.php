@@ -8,6 +8,7 @@
         
         if ($verification['verified']) {
             $_SESSION['id'] = $verification['user_id'];
+            $_SESSION['name'] = $verification['user_name'];
             if (isset($_GET['sender'])) {
                 header("Location: " . $_GET['sender']);
             } else {

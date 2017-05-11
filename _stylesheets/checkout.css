@@ -16,3 +16,7 @@
     position: relative;
     top: 20px;
 }
+
+#vehicle_table {
+    width: 100%;
+}

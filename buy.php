@@ -61,7 +61,7 @@
                 <div class="col-md-5">
                     <div class="row">
                         <div class="col-md-1">
-                            <i class="fa fa-search fa-2x"></i>
+                            <i class="fa fa-filter fa-2x"></i>
                         </div>
                         <div class="col-md-11">
                             <input id="offerings_table_search" type="text" class="form-control input-sm" placeholder="Filter results by address or owner...">

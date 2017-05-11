@@ -54,7 +54,7 @@
                             </ul>
                         </li>
                     <?php else:?>
-                    <li><div class="btn-nav"><a href="register.php?sender=<?php echo $page;?>" class="btn btn-default navbar-btn">Register</a></div></li>
+                    <li><div class="btn-nav"><a href="login.php?sender=<?php echo $page;?>" class="btn btn-default navbar-btn">Log In</a></div></li>
                     <?php endif;?>
                 </ul>
             </div>
