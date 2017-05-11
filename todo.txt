@@ -3,7 +3,6 @@
  */
  
 /* TODO (TRANSACTION)
- * Buy as a guest (if that's possible, I know we don't want to handle credit card info)
  * Add PayPal
  * Use reservation numbers for game day parking instead of license plate #
  * Add option to purchase more time for after the game

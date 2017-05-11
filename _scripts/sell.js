@@ -4,8 +4,6 @@
 
 make_request_url = "sell_action.php";
 
-var EVENT_FADE_SPEED = 1000;
-
 /* Load */
 function load_all() {
     load_driveways(function (data) {
@@ -164,10 +162,6 @@ function display_events(driveway_id, stadium_id, events) {
                 }).append(
                     $("<button></button>", {
                         "class": "btn btn-primary btn-xs get-prev-event"
-                    }).attr({
-                        "data-toggle": "tooltip",
-                        "data-placement": "left",
-                        "title": "Previous"
                     }).append(
                         $("<i></i>", {
                             "class": "fa fa-arrow-left"
@@ -184,7 +178,8 @@ function display_events(driveway_id, stadium_id, events) {
                         $("<div></div>", {
                             "class": "progress-bar progress-bar-hidden",
                             "role": "progressbar"
-                        }).css("width", $(this).parent().width() / events.length) //TODO Fix.
+                        }).css("width", 0)
+                        //TODO: calculate initial width of hidden progress bar to prevent scrolling on reload.
                     ).append(
                         $("<div></div>", {
                             "class": "progress-bar",
@@ -198,10 +193,6 @@ function display_events(driveway_id, stadium_id, events) {
                 }).append(
                     $("<button></button>", {
                         "class": "btn btn-primary btn-xs get-next-event"
-                    }).attr({
-                        "data-toggle": "tooltip",
-                        "data-placement": "right",
-                        "title": "Next"
                     }).append(
                         $("<i></i>", {
                             "class": "fa fa-arrow-right"
@@ -212,29 +203,8 @@ function display_events(driveway_id, stadium_id, events) {
         }
 
         $.each(events, function (index, event) {
-            $event_item = $("<div></div>");
-            display_event_cell($event_item, event);
-        }
-            
-
-    var $event_list_col = $("tr[data-driveway_id='" + driveway_id + "'][data-stadium_id='" + stadium_id + "']");
-    $event_list_col.find(".event-list-col").remove();
-    $event_list_col.append(
-        $("<td></td>", {
-            "class": "event-list-col"
-        }).attr({
-            "data-num_events": events.length
-        }).append($event_row)
-    );
-}
-
-function display_event_cell($event_cell, event) {
-, {
+            $event_item = $("<div></div>", {
                 "class": "col-md-3 text-center event-cell"
-            }).attr({
-                "data-event_id": event.id,
-                "data-driveway_id": driveway_id,
-                "data-stadium_id": stadium_id
             }).append(
                 $("<div></div>").append(
                     $("<h5></h5>", {
@@ -281,10 +251,15 @@ function display_event_cell($event_cell, event) {
             $event_row.append($event_item);
         });
     }
-}
 
-function display_event_scroll_bar() {
-    
+    var $event_list_col = $("tr[data-driveway_id='" + driveway_id + "'][data-stadium_id='" + stadium_id + "']");
+    $event_list_col.find(".event-list-col").remove();
+    $event_list_col.append(
+        $("<td></td>", {
+            "class": "event-list-col"
+        }).attr({
+            "data-num_events": events.length
+        }).append($event_row));
 }
 
 function display_event_details(offering, transactions) {
@@ -329,21 +304,19 @@ function display_event_details(offering, transactions) {
 }
 
 /* Events */
-function on_offering_availability_change(e) {
-    e.preventDefault();
-    
-    var $event_cell = $(this).closest(".event-cell");
-    var stadium_id = $event_cell.data("stadium_id");
-    var driveway_id = $event_cell.data("driveway_id");
-    var event_id = $event_cell.data("event_id");
-    var available = ($(this).is(":checked")) ? 1 : 0;
+function on_offering_availability_change() {
+    var checkbox = $(this);
+    var stadium_id = checkbox.data("stadium_id");
+    var driveway_id = checkbox.data("driveway_id");
+    var event_id = checkbox.data("event_id");
+    var available = (checkbox.is(":checked")) ? 1 : 0;
 
     make_request("update_offering_availability", {
         driveway_id: driveway_id,
         event_id: event_id,
         available: available
     }, function (data) {
-        display_event_cell($event_cell, data[0][0]);
+        load_events(driveway_id, stadium_id);
     });
 }
 
@@ -393,16 +366,13 @@ function on_get_next_event() {
     if ($hidden_after.length == 0) {
         return;
     } else {
+        $event_cells.filter(":visible").first().hide(0);
+        $event_cells.filter(":visible").last().next(":hidden").show(0, function () {
+            $(this).find(".offering-availability").bootstrapToggle();
+        });
         $event_list_col.find(".progress-bar-hidden").css("width", function (index, value) {
             value = parseFloat(value);
             return value + $(this).parent().width() / $event_list_col.data("num_events");
-        });
-        $event_cells.filter(":visible").first().fadeOut(0);
-        $event_cells.filter(":visible").last().next(":hidden").fadeIn({
-            "duration": EVENT_FADE_SPEED,
-            "start": function () {
-                $(this).find(".offering-availability").bootstrapToggle();
-            }
         });
     }
 }
@@ -417,16 +387,13 @@ function on_get_prev_event() {
     if ($hidden_before.length == 0) {
         return;
     } else {
+        $event_cells.filter(":visible").last().hide(0);
+        $event_cells.filter(":visible").first().prev(":hidden").show(0, function () {
+            $(this).find(".offering-availability").bootstrapToggle();
+        });
         $event_list_col.find(".progress-bar-hidden").css("width", function (index, value) {
             value = parseFloat(value);
             return value - $(this).parent().width() / $event_list_col.data("num_events");
-        });
-        $event_cells.filter(":visible").last().fadeOut(0);
-        $event_cells.filter(":visible").first().prev(":hidden").fadeIn({
-            duration: EVENT_FADE_SPEED,
-            start: function () {
-                $(this).find(".offering-availability").bootstrapToggle();
-            }
         });
     }
 }
@@ -450,11 +417,4 @@ $(document).ready(function () {
     $("#offerings_tbody").on("click", ".get-next-event", on_get_next_event);
     $("#offerings_tbody").on("click", ".get-prev-event", on_get_prev_event);
 
-    $('body').tooltip({
-        selector: '[data-toggle="tooltip"]',
-        delay: {
-            "show": 1000,
-            "hide": 100
-        }
-    });
 });
