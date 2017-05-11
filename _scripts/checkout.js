@@ -149,7 +149,7 @@ function onfinishCheckoutButtonClicked() {
         stripe_token: $("#make_transaction_info input[name=stripe_token]").val(),
         vehicle_id: $("#make_transaction_info input[name=vehicle_id]").val()
     }, function (data) {
-        console.log("success (but should have been redirected)", data);
+        window.location.href = "/checkout_completed.php";
     }, function () {
         console.log("error");
     });

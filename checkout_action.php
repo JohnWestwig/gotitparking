@@ -32,8 +32,7 @@
                 if ($stripe_charge) {
                     $dbconn->sp_execute("sp_make_transaction_transaction_insert", [$_SESSION['id'], $_POST['offering_id'], $stripe_charge['id'], $_POST['vehicle_id']]);
                 }
-
-                header("Location: transaction_completed.php");
+                reply($stripe_charge);
             } catch(\Stripe\Error\Card $e) {
                 $error = $e->getMessage();
                 reply($error);
